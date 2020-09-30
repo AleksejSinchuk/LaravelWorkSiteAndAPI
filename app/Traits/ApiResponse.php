@@ -2,37 +2,44 @@
 
 
 namespace App\Traits;
-use Response;
+use App\CompanyModel;
+use Illuminate\Http\Response;
+use Illuminate\Http\Request;
 
 trait ApiResponse
 {
     public function sendResponse($result,$message,$code){
-        return Respose::json(self::makeResponse($message,$result),$code);
+
+        return response()->json(self::makeResponse($message,$result),$code);
+
     }
 
     public function sendError($error, $code = 400, $data = []) {
 
-        return Response::json(self::makeError($error, $data), $code);
+        return response()->json(self::makeError($error, $data), $code);
     }
 
     public static function makeResponse($message, $data)
     {
-        return [
+        $res= array(
             'success' => true,
-            'data'    => $data,
             'message' => $message,
-        ];
+            );
+        if($data!=null){
+            $res['data'] = array($data);
+        }
+        return $res;
     }
 
     public static function makeError($message, array $data = [])
     {
-        $res = [
+        $res = array(
             'success' => false,
             'message' => $message,
-        ];
+             );
 
         if (!empty($data)) {
-            $res['data'] = $data;
+            $res['data'] = array($data);
         }
 
         return $res;

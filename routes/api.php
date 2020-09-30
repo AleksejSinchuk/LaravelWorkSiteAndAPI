@@ -19,16 +19,16 @@ use Illuminate\Support\Facades\Route;
 //});
 
 Route::prefix('/vacancy')->group(function (){
-    Route::get('/',[uses=>'VacancyController@get']);
-    Route::get('/{vacancy_id}',[uses=>'VacancyController@detail'])->where(['vacancy_id'=>'[0-9+]']);;
-    Route::post('/',[uses=>'VacancyController@create']);
-    Route::delete('/{vacancy_id}',[uses=>'VacancyController@delete'])->where(['vacancy_id'=>'[0-9+]']);
-    Route::put('/{vacancy_id}',[uses=>'VacancyController@update'])->where(['vacancy_id'=>'[0-9+]']);
+    Route::get('/',['uses'=>'VacancyController@get']);
+    Route::get('/{entityId}',['uses'=>'VacancyController@detail'])->where(['entityId'=>'[0-9+]']);
+    Route::post('/add',['uses'=>'VacancyController@create']);
+    Route::delete('/{entityId}',['uses'=>'VacancyController@delete'])->where(['entityId'=>'[0-9+]']);
+    Route::put('/{entityId}',['uses'=>'VacancyController@update'])->where(['entityId'=>'[0-9+]']);
 });
 Route::prefix('/company')->group(function (){
-    Route::get('/',[uses=>'CompanyController@get']);
-    Route::get('/{company_id}',[uses=>'CompanyController@detail'])->where(['company_id'=>'[0-9+]']);;
-    Route::post('/',[uses=>'CompanyController@create']);
-    Route::delete('/{company_id}',[uses=>'VacancyController@delete'])->where(['company_id'=>'[0-9+]']);
-    Route::put('/{company_id}',[uses=>'CompanyController@update'])->where(['compan_id'=>'[0-9+]']);
+    Route::get('/',['uses'=>'CompanyController@get']);
+    Route::get('/{entityId}',['uses'=>'CompanyController@detail'])->where(['entityId'=>'[0-9+]']);
+    Route::post('/add',['uses'=>'CompanyController@create']);
+    Route::delete('/delete/{entityId}',['uses'=>'CompanyController@delete'])->where(['entityId'=>'[0-9+]']);
+    Route::put('/update/{entityId}',['uses'=>'CompanyController@update'])->where(['entityId'=>'[0-9+]']);
 });

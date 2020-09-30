@@ -4,11 +4,14 @@
 namespace App\Http\Controllers;
 
 
+use App\Http\Requests\VacancyRequest;
+use App\VacancyModel;
+
 class VacancyController extends ApiControllers
 {
-    public function __construct(VacancyModel $model,VacancyController $request)
+    public function __construct(VacancyModel $model,VacancyRequest $request)
     {
-        $this->model=$model;
         $this->request=$request;
+        $this->model=$model;
     }
 }
